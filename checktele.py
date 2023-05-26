@@ -13,374 +13,335 @@ from help import *
 from config import *
 from threading import Thread
 
-a = 'qwertyuiopassdfghjklzxcvbnm'
-b = '1234567890'
-e = 'qwertyuiopassdfghjklzxcvbnm1234567890'
+a = "qwertyuiopassdfghjklzxcvbnm"
+b = "1234567890"
+e = "qwertyuiopassdfghjklzxcvbnm1234567890"
 
-banned = []
+trys, trys2 = [0], [0]
 isclaim = ["off"]
 isauto = ["off"]
-with open("banned.txt", "r") as f:
-    f = f.read().split()
-    banned.append(f)
-
-que = Queue()
 
 
 def check_user(username):
-    url = "https://t.me/"+str(username)
+    url = "https://t.me/" + str(username)
+    ua = UserAgent()
     headers = {
-        "User-Agent": generate_user_agent(),
+        "User-Agent": ua.random,
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"}
+        "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
+    }
 
-    response = requests.get(url, headers=headers)
-    if response.text.find('If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"') >= 0:
-        return "Available"
+    session = requests.Session()
+    response = session.get(url, headers=headers)
+
+    if (
+        response.text.find(
+            'If you have <strong>Telegram</strong>, you can contact <a class="tgme_username_link"'
+        )
+        >= 0
+    ):
+        return True
     else:
-        return "Unavailable"
+        return False
+
 
 def gen_user(choice):
-    if choice == "1":
+    if choice == "ثلاثيات":
         c = random.choices(a)
         d = random.choices(b)
         s = random.choices(e)
         f = [c[0], "_", d[0], "_", s[0]]
-        username = ''.join(f)
-        if username in banned[0]:
-            c = random.choices(a)
-            d = random.choices(b)
-            s = random.choices(e)
-            f = [c[0], "_", d[0], "_", s[0]]
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "2":
+        username = "".join(f)
+
+    elif choice == "خماسي":
+        c = d = random.choices(a)
+        d = random.choices(b)
+        f = [c[0], c[0], c[0], c[0], d[0]]
+        random.shuffle(f)
+        username = "".join(f)
+
+    elif choice == "خماسي حرفين":
         c = random.choices(a)
-        d = random.choices(a)
-        s = random.choices(e)
-        f = [c[0], "_", d[0], "_", s[0]]
-        username = ''.join(f)
-        if username in banned[0]:
-            c = random.choices(a)
-            d = random.choices(b)
-            s = random.choices(e)
-            f = [c[0], "_", d[0], "_", s[0]]
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "3":
-        c = d =random.choices(a)
-        d = random.choices(e)
-        s = random.choices(b)
-        f =  [c[0], d[0], s[0], s[0], s[0]]
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d =random.choices(a)
-            d = random.choices(e)
-            s = random.choices(b)
-            f =  [c[0], d[0], s[0], s[0], s[0]]
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "4":
-        c = d =random.choices(a)
-        d = random.choices(e)
-        s = random.choices(b)
-        f =  [c[0], d[0], s[0], s[0], s[0],s[0]]
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d =random.choices(a)
-            d = random.choices(e)
-            s = random.choices(b)
-            f =  [c[0], d[0], s[0], s[0], s[0],s[0]]
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "5":
-        c = d =random.choices(a)
-        d = random.choices(e)
-        s = random.choices(b)
-        f =  [c[0], d[0], s[0], s[0], s[0],s[0],s[0]]
-        random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(e)
-            s = random.choices(b)
-            f =  [c[0], d[0], s[0], s[0], s[0],s[0],s[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "6":
-        c = d = random.choices(a)
-        d = random.choices(e)
-        f =  [c[0], d[0], c[0], d[0], c[0]]
-        random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f =  [c[0], d[0], c[0], d[0], c[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "8":
-        c = d = random.choices(a)
         d = random.choices(e)
         f = [c[0], d[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f =  [c[0], d[0], c[0], c[0], d[0]]                
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "9":
+        username = "".join(f)
+
+    elif choice == "سداسيات":
         c = d = random.choices(a)
         d = random.choices(e)
-        f = [c[0], d[0], d[0], d[0], c[0]]
+        f = [c[0], c[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f = [c[0], d[0], d[0], d[0], c[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "10":
+        username = "".join(f)
+
+    elif choice == "سداسي حرفين":
         c = d = random.choices(a)
-        d = random.choices(e)
-        f = [c[0], c[0], d[0], d[0], d[0]]
+        d = random.choices(b)
+        f = [c[0], d[0], c[0], c[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f =  [c[0], c[0], d[0], d[0], d[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "11":
+        username = "".join(f)
+
+    elif choice == "سباعيات":
         c = d = random.choices(a)
-        d = random.choices(e)
-        f = [c[0], d[0], d[0], c[0], d[0]]
+        d = random.choices(b)
+        f = [c[0], c[0], c[0], c[0], d[0], c[0], c[0]]
         random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f = [c[0], d[0], d[0], c[0],  d[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "12":
+        username = "".join(f)
+
+    elif choice == "بوتات":
+        c = random.choices(a)
+        d = random.choices(e)
+        s = random.choices(e)
+        f = [c[0], s[0], d[0]]
+        username = "".join(f)
+        username = username + "bot"
+
+    elif choice == "تيست":
         c = d = random.choices(a)
-        d = random.choices(e)
-        f = [c[0], d[0], c[0], c[0], c[0]]
+        d = random.choices(b)
+        f = [c[0], d[0], c[0], d[0], d[0], c[0], c[0], d[0], c[0], d[0]]
         random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f = [c[0], d[0], c[0], c[0], c[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
-    if choice == "13":
-        c = d = random.choices(a)
-        d = random.choices(e)
-        f =  [c[0], c[0], d[0], c[0], c[0]]
-        random.shuffle(f)
-        username = ''.join(f)
-        if username in banned[0]:
-            c = d = random.choices(a)
-            d = random.choices(b)
-            f =  [c[0], c[0], d[0], c[0], c[0]]
-            random.shuffle(f)
-            username = ''.join(f)
-        else:
-            pass
+        username = "".join(f)
+    else:
+        raise ValueError("Invalid choice for username generation.")
     return username
 
-@sython.on(events.NewMessage(outgoing=True, pattern=r"\.تشيكر"))
+
+@sython.on(pattern="الصيد")
 async def _(event):
-    if ispay2[0] == "yes":
-        await event.edit(tele_checker)
-        
-@sython.on(events.NewMessage(outgoing=True, pattern=r"\.اليوزرات المبندة"))
-async def _(event):
-    if ispay2[0] == "yes":
-        await sython.send_file(event.chat_id, 'banned.txt')
+    await event.edit(
+        """
+أوامر الصيد الخاصة بسورس بيرو : 
+
+ٴ— — — — — — — — — —
+
+النوع :(  سداسي حرفين/ ثلاثيات/ سداسيات/ بوتات/ خماسي حرفين/خماسي /سباعيات )
+
+الامر:  `.صيد` + النوع
+- يقوم بصيد معرفات عشوائية حسب النوع
+
+الامر:  `تثبيت` + معرف
+* وظيفة الامر : يقوم بالتثبيت على المعرف عندما يصبح متاح يأخذه
+
+ٴ— — — — — — — — — —
+الامر:   `.حالة الصيد`
+• لمعرفة عدد المحاولات للصيد
+
+الامر:  `.حالة التثبيت`
+• لمعرفة عدد المحاولات للصيد
+
+@Sero_Bots  ~ channle userbot 
+
+"""
+    )
 
 
-@sython.on(events.NewMessage(outgoing=True, pattern=r"\.الانواع"))
-async def _(event):
-    if ispay2[0] == "yes":
-        await event.edit(tele_checker2)
-# صيد عدد نوع قناة
+@sython.on(pattern="صيد (.*)")
+async def hunterusername(event):
+    choice = str(event.pattern_match.group(1))
+    await event.edit(f"**- تم تفعيل الصيد بنجاح الان**")
+    try:
+        ch = await sython(
+            functions.channels.CreateChannelRequest(
+                title="صيد بيرو",
+                about="تاج راسي بيرو @PvPPPP",
+            )
+        )
+        ch = ch.updates[1].channel_id
+    except Exception as e:
+        await sython.send_message(
+            event.chat_id, f"خطأ في انشاء القناة , الخطأ**-  : {str(e)}**"
+        )
+        sedmod = False
 
-
-@sython.on(events.NewMessage(outgoing=True, pattern=r"\.صيد (.*)"))
-async def _(event):
-    if ispay2[0] == "yes":
-        isclaim.clear()
-        isclaim.append("on")
-        msg = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 2)
-        ch = str(msg[2])
-        choice = str(msg[1])
-        trys = 0
-        await event.edit(f"حسناً سأفحص نوع `{choice}` من اليوزرات على `{ch}` , بعدد `{msg[0]}` من المحاولات !")
-
-        @sython.on(events.NewMessage(outgoing=True, pattern=r"\.حالة الصيد"))
-        async def _(event):
-            if ispay2[0] == "yes":
-                if "on" in isclaim:
-                    await event.edit(f"الصيد وصل لـ({trys}) من المحاولات")
-                elif "off" in isclaim:
-                    await event.edit("لايوجد صيد شغال !")
-                else:
-                    await event.edit("خطأ")
-            else:
-                pass
-        for i in range(int(msg[0])):
-            if ispay2[0] == 'no':
+    isclaim.clear()
+    isclaim.append("on")
+    sedmod = True
+    while sedmod:
+        username = gen_user(choice)
+        if username == "error":
+            await event.edit("**- يرجى وضع النوع بشكل صحيح**")
+            break
+        isav = check_user(username)
+        if isav == True:
+            try:
+                await sython(
+                    functions.channels.UpdateUsernameRequest(
+                        channel=ch, username=username
+                    )
+                )
+                await event.client.send_file(
+                    event.chat_id,
+                    "https://t.me/vacmvcgitd/2",
+                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Type: {}\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                        username, trys, choice
+                    ),
+                )
+                await event.client.send_file(
+                    ch,
+                    "https://t.me/vacmvcgitd/2",
+                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Type: {}\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                        username, trys, choice
+                    ),
+                )
+                await event.client.send_message(
+                    "@B_r_0", f"- Done : @{username} !\n- By : @PvPPPP - @Sero_Bots !"
+                )
+                sedmod = False
                 break
-            username = ""
-
-            username = gen_user(choice)
-            t = Thread(target=lambda q, arg1: q.put(
-                check_user(arg1)), args=(que, username))
-            t.start()
-            t.join()
-            isav = que.get()
-            if "Available" in isav:
-                await asyncio.sleep(1)
-                try:
-                    await sython(functions.channels.UpdateUsernameRequest(
-                        channel=ch, username=username))
-                    await event.client.send_message(event.chat_id, f'''
-WًٍَُِّE ًٍَُِّAًٍَُِّRًٍَُِّE ًٍَُِّSًٍَُِّTًٍَُِّRًٍَُِّOًٍَُِّNًٍَُِّGًٍَُِّEًٍَُِّR 
-ًٍَُِّI ًٍَُِّCًٍَُِّLًٍَُِّAًٍَُِّIًٍَُِّMًٍَُِّEًٍَُِّD ًٍَُِّNًٍَُِّEًٍَُِّW ًٍَُِّUًٍَُِّSًٍَُِّEًٍَُِّR  ❲ @{username} ❳
-ًٍَُِّCًٍَُِّH : @B_r_0 - @PvPPPP 𖠛
-    ''')
-                    break
-                except telethon.errors.rpcerrorlist.UsernameInvalidError:
-                    with open("banned.txt", "a") as f:
-                        f.write(f"\n{username}")
-                except Exception as eee:
-                    await sython.send_message(event.chat_id, f'''خطأ مع {username}
-    الخطأ :
-    {str(eee)}''')
-                    if "A wait of" in str(eee):
-                        break
-                    else:
-                        await sython.send_message(event.chat.id, "تعال لك جبتلك يوزر ضيم متاح ✅")
-            else:
+            except telethon.errors.rpcerrorlist.UsernameInvalidError:
                 pass
-            trys += 1
+            except Exception as baned:
+                if "(caused by UpdateUsernameRequest)" in str(baned):
+                    pass
+            except telethon.errors.FloodError as e:
+                await sython.send_message(
+                    event.chat_id,
+                    f"للاسف تبندت , مدة الباند**-  ({e.seconds}) ثانية .**",
+                )
+                sedmod = False
+                break
+            except Exception as eee:
+                if "the username is already" in str(eee):
+                    pass
+                if "USERNAME_PURCHASE_AVAILABLE" in str(eee):
+                    pass
+                else:
+                    await sython.send_message(
+                        event.chat_id,
+                        f"""- خطأ مع @{username} , الخطأ :{str(eee)}""",
+                    )
+                    sedmod = False
+                    break
+        else:
+            pass
+        trys[0] += 1
+    isclaim.clear()
+    isclaim.append("off")
 
+
+@sython.on(pattern="تثبيت (.*)")
+async def _(event):
+    msg = event.text.split()
+    try:
+        ch = str(msg[2])
+        ch = ch.replace("@", "")
+        await event.edit(f"حسناً سيتم بدء التثبيت في**-  @{ch} .**")
+    except:
+        try:
+            ch = await sython(
+                functions.channels.CreateChannelRequest(
+                    title="تثبيت بيرو",
+                    about="تثبيت بيرو @PvPPPP",
+                )
+            )
+            ch = ch.updates[1].channel_id
+            await event.edit(f"**- تم بنجاح بدأ التثبيت**")
+        except Exception as e:
+            await sython.send_message(
+                event.chat_id, f"خطأ في انشاء القناة , الخطأ : {str(e)}"
+            )
+    isauto.clear()
+    isauto.append("on")
+    username = str(msg[1])
+
+    swapmod = True
+    while swapmod:
+        isav = check_user(username)
+        if isav == True:
+            try:
+                await sython(
+                    functions.channels.UpdateUsernameRequest(
+                        channel=ch, username=username
+                    )
+                )
+                await event.client.send_file(
+                    ch,
+                    "https://t.me/vacmvcgitd/2",
+                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                        username, trys2
+                    ),
+                )
+                await event.client.send_file(
+                    event.chat_id,
+                    "https://t.me/vacmvcgitd/2",
+                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                        username, trys2
+                    ),
+                )
+                await event.client.send_message(
+                    "@B_r_0",
+                    f"- Done : @{username} !\n- By : @PvPPPP - @Sero_Bots !\n- Hunting Log {trys2}",
+                )
+                swapmod = False
+                break
+            except telethon.errors.rpcerrorlist.UsernameInvalidError:
+                await event.client.send_message(
+                    event.chat_id, f"المعرف **-  @{username} غير صالح . **"
+                )
+                swapmod = False
+                break
+            except telethon.errors.FloodError as e:
+                await sython.send_message(
+                    event.chat_id, f"للاسف تبندت , مدة الباند ({e.seconds}) ثانية ."
+                )
+                swapmod = False
+                break
+            except Exception as eee:
+                await sython.send_message(
+                    event.chat_id,
+                    f"""خطأ مع {username} , الخطأ :{str(eee)}""",
+                )
+                swapmod = False
+                break
+        else:
+            pass
+        trys2[0] += 1
+
+    isclaim.clear()
+    isclaim.append("off")
+
+
+@sython.on(pattern="ايقاف الصيد")
+async def _(event):
+    if "on" in isclaim:
         isclaim.clear()
         isclaim.append("off")
-        trys = ""
-        await event.client.send_message(event.chat_id, "! انتهى الصيد")
-        
-@sython.on(events.NewMessage(outgoing=True, pattern=r"\.تثبيت (.*)"))
+        return await event.edit("**- تم بنجاح ايقاف عملية الصيد**")
+    elif "off" in isclaim:
+        return await event.edit("**- لم يتم تفعيل الصيد بالأصل لأيقافه**")
+    else:
+        return await event.edit("**- لقد حدث خطأ ما وتوقف الامر لديك**")
+
+
+@sython.on(pattern="ايقاف التثبيت")
 async def _(event):
-    if ispay2[0] == "yes":
-        trys = 0
-        msg = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
-        if msg[0] == "تلقائي":  # تثبيت تلقائي عدد يوزر قناة
-            isauto.clear()
-            isauto.append("on")
-            msg = ("".join(event.text.split(maxsplit=2)[2:])).split(" ", 2)
-            username = str(msg[2])
-            ch = str(msg[1])
-            await event.edit(f"حسناً سأحاول تثبيت `{username}` على `{ch}` , بعدد `{msg[0]}` من المحاولات !")
+    if "on" in isauto:
+        isauto.clear()
+        isauto.append("off")
+        return await event.edit("**- تم بنجاح ايقاف عملية التثبيت**")
+    elif "off" in isauto:
+        return await event.edit("**- لم يتم تفعيل التثبيت بالأصل لأيقافه**")
+    else:
+        return await event.edit("**-لقد حدث خطأ ما وتوقف الامر لديك**")
 
-            @sython.on(events.NewMessage(outgoing=True, pattern=r"\.حالة التثبيت التلقائي"))
-            async def _(event):
-                if "on" in isauto:
-                    msg = await event.edit(f"التثبيت وصل لـ({trys}) من المحاولات")
-                elif "off" in isauto:
-                    await event.edit("لايوجد تثبيت شغال !")
-                else:
-                    await event.edit("خطأ")
-            for i in range(int(msg[0])):
-                if ispay2[0] == 'no':
-                    break
-                t = Thread(target=lambda q, arg1: q.put(
-                    check_user(arg1)), args=(que, username))
-                t.start()
-                t.join()
-                isav = que.get()
-                if "Available" in isav:
-                    try:
-                        await sython(functions.channels.UpdateUsernameRequest(
-                            channel=ch, username=username))
-                        await event.client.send_message(event.chat_id, f'''
-WًٍَُِّE ًٍَُِّAًٍَُِّRًٍَُِّE ًٍَُِّSًٍَُِّTًٍَُِّRًٍَُِّOًٍَُِّNًٍَُِّGًٍَُِّEًٍَُِّR 
-ًٍَُِّI ًٍَُِّCًٍَُِّLًٍَُِّAًٍَُِّIًٍَُِّMًٍَُِّEًٍَُِّD ًٍَُِّNًٍَُِّEًٍَُِّW ًٍَُِّUًٍَُِّSًٍَُِّEًٍَُِّR  ❲ @{username} ❳
-ًٍَُِّCًٍَُِّH : @B_r_0 - @PvPPPP 𖠛
 
-    ''')
-                        break
-                    except telethon.errors.rpcerrorlist.UsernameInvalidError:
-                        await event.client.send_message(event.chat_id, f"مبند `{username}` ❌❌")
-                        break
-                    except Exception as eee:
+@sython.on(pattern="حالة الصيد")
+async def _(event):
+    if "on" in isclaim:
+        await event.edit(f"**- الصيد وصل لـ({trys[0]}) **من المحاولات")
+    elif "off" in isclaim:
+        await event.edit("**- الصيد بالاصل لا يعمل .**")
+    else:
+        await event.edit("- لقد حدث خطأ ما وتوقف الامر لديك")
 
-                        await sython.send_message(event.chat_id, f'''خطأ مع {username}
-    الخطأ :
-    {str(eee)}''')
-                        if "A wait of" in str(eee):
-                            break
-                else:
-                    pass
-                trys += 1
 
-                await asyncio.sleep(8)
-            trys = ""
-            isclaim.clear()
-            isclaim.append("off")
-            await sython.send_message(event.chat_id, "تم الانتهاء من التثبيت التلقائي")
-        if msg[0] == "يدوي":  # تثبيت يدوي يوزر قناة
-            await event.edit(f"حسناً سأحاول تثبيت `{username}` على `{ch}` !")
-            msg = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
-            username = str(msg[0])
-            ch = str(msg[1])
-            try:
-                await sython(functions.channels.UpdateUsernameRequest(
-                    channel=ch, username=username))
-                await event.client.send_message(event.chat_id, f'''
-WًٍَُِّE ًٍَُِّAًٍَُِّRًٍَُِّE ًٍَُِّSًٍَُِّTًٍَُِّRًٍَُِّOًٍَُِّNًٍَُِّGًٍَُِّEًٍَُِّR 
-ًٍَُِّI ًٍَُِّCًٍَُِّLًٍَُِّAًٍَُِّIًٍَُِّMًٍَُِّEًٍَُِّD ًٍَُِّNًٍَُِّEًٍَُِّW ًٍَُِّUًٍَُِّSًٍَُِّEًٍَُِّR  ❲ @{username} ❳
-ًٍَُِّCًٍَُِّH : @B_r_0 - @PvPPPP 𖠛
-    ''')
-            except telethon.errors.rpcerrorlist.UsernameInvalidError:
-                await event.client.send_message(event.chat_id, f"مبند `{username}` ❌❌")
-            except Exception as eee:
-                await sython.send_message(event.chat_id, f'''خطأ مع {username}
-    الخطأ :
-    {str(eee)}''')
-Threads=[] 
-for t in range(100):
-    x = threading.Thread(target=_)
-    le = threading.Thread(target=gen_user)
-    x.start()
-    le.start()
-    Threads.append(x)
-    Threads.append(le)
-for Th in Threads:
-    Th.join()
+@sython.on(pattern="حالة التثبيت")
+async def _(event):
+    if "on" in isauto:
+        await event.edit(f"**- التثبيت وصل لـ({trys2[0]}) من المحاولات**")
+    elif "off" in isauto:
+        await event.edit("**- التثبيت بالاصل لا يعمل .**")
+    else:
+        await event.edit("-لقد حدث خطأ ما وتوقف الامر لديك")
