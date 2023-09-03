@@ -110,9 +110,8 @@ def gen_user(choice):
 
 @sython.on(pattern="الصيد")
 async def _(event):
-    await event.edit(
-        """
-أوامر الصيد الخاصة بسورس حيدر : 
+    await event.edit("""
+أوامر الصيد الخاصة بسورس حيدر :
 
 ٴ— — — — — — — — — —
 
@@ -131,10 +130,7 @@ async def _(event):
 الامر:  `.حالة التثبيت`
 • لمعرفة عدد المحاولات للصيد
 
-@ss_sz  ~ channle userbot 
-
-"""
-    )
+@ss_sz  ~ channle userbot""")
 
 
 @sython.on(pattern="صيد (.*)")
