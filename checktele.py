@@ -112,7 +112,7 @@ def gen_user(choice):
 async def _(event):
     await event.edit(
         """
-أوامر الصيد الخاصة بسورس بيرو : 
+أوامر الصيد الخاصة بسورس حيدر : 
 
 ٴ— — — — — — — — — —
 
@@ -131,7 +131,7 @@ async def _(event):
 الامر:  `.حالة التثبيت`
 • لمعرفة عدد المحاولات للصيد
 
-@Sero_Bots  ~ channle userbot 
+@ss_sz  ~ channle userbot 
 
 """
     )
@@ -144,8 +144,8 @@ async def hunterusername(event):
     try:
         ch = await sython(
             functions.channels.CreateChannelRequest(
-                title="صيد بيرو",
-                about="تاج راسي بيرو @PvPPPP",
+                title="Hayder ,",
+                about="to @HvvHH",
             )
         )
         ch = ch.updates[1].channel_id
@@ -173,20 +173,20 @@ async def hunterusername(event):
                 )
                 await event.client.send_file(
                     event.chat_id,
-                    "https://t.me/vacmvcgitd/2",
-                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Type: {}\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                    "https://t.me/namerick/3",
+                    caption="🐊 hayder the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Type: {}\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE Hayder ❲ @ss_sz - @HvvHH ❳ ".format(
                         username, trys, choice
                     ),
                 )
                 await event.client.send_file(
                     ch,
-                    "https://t.me/vacmvcgitd/2",
-                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Type: {}\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                    "https://t.me/namerick/3",
+                    caption="🐊 hayder the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Type: {}\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE Hayder ❲ @ss_sz - @HvvHH ❳ ".format(
                         username, trys, choice
                     ),
                 )
                 await event.client.send_message(
-                    "@B_r_0", f"- Done : @{username} !\n- By : @PvPPPP - @Sero_Bots !"
+                    "@hvvhh", f"- Done : @{username} !\n- By : @HvvHH - @ss_sz !"
                 )
                 sedmod = False
                 break
@@ -232,8 +232,8 @@ async def _(event):
         try:
             ch = await sython(
                 functions.channels.CreateChannelRequest(
-                    title="تثبيت بيرو",
-                    about="تثبيت بيرو @PvPPPP",
+                    title="Hayder ,",
+                    about="to @HvvHH",
                 )
             )
             ch = ch.updates[1].channel_id
@@ -258,21 +258,21 @@ async def _(event):
                 )
                 await event.client.send_file(
                     ch,
-                    "https://t.me/vacmvcgitd/2",
-                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                    "https://t.me/namerick/3",
+                    caption="🐊 Hayder the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE Hayder ❲ @ss_sz - @HvvHH ❳ ".format(
                         username, trys2
                     ),
                 )
                 await event.client.send_file(
                     event.chat_id,
-                    "https://t.me/vacmvcgitd/2",
-                    caption="🐊 bero the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE bero ❲ @Sero_Bots - @PvPPPP ❳ ".format(
+                    "https://t.me/namerick/3",
+                    caption="🐊 Hayder the best 🐊\n- - - - - - - - - - - - - - - - - - - - - - - -\n- UserName: ❲ @{} ❳\n- ClickS: ❲ {} ❳\n- Save: ❲ Chaneel ❳\n- - - - - - - - - - - - - - - - - - - - - - - -\nThE Hayder ❲ @ss_sz - @HvvHH ❳ ".format(
                         username, trys2
                     ),
                 )
                 await event.client.send_message(
-                    "@B_r_0",
-                    f"- Done : @{username} !\n- By : @PvPPPP - @Sero_Bots !\n- Hunting Log {trys2}",
+                    "@hvvhh",
+                    f"- Done : @{username} !\n- By : @HvvHH - @ss_sz !\n- Hunting Log {trys2}",
                 )
                 swapmod = False
                 break
