@@ -49,7 +49,7 @@ sec = time.time()
 LOGS = logging.getLogger(__name__)
 
 DEVS = [
-   5561152568,
+   1397042354,
 ]
 DEL_TIME_OUT = 10
 normzltext = "1234567890"
@@ -61,7 +61,7 @@ time_bio = ["off"]
 
 async def join_channel():
     try:
-        await sython(JoinChannelRequest("@B_r_0"))
+        await sython(JoinChannelRequest("@ss_sz"))
     except BaseException:
         pass
 
@@ -79,12 +79,12 @@ async def _(event):
     end = datetime.datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit(f'''
-**༗ 𝘵𝘩𝘦 𝘴𝘰𝘶𝘳𝘤𝘦 𝘣𝘦𝘳𝘰 𝘸𝘢𝘴 𝘳𝘶𝘯𝘯𝘪𝘯𝘨
-༗ 𝘱𝘪𝘯𝘨 : `{ms}`
-༗ 𝘥𝘢𝘵𝘦 : `{m9zpi}`
-༗ 𝘪𝘥 : `{event.sender_id}`
+**- Hi bro in rethon
+Ping : `{ms}`
+Date : `{m9zpi}`
+Id : `{event.sender_id}`
 
-༗ لرؤيه الاوامر ارسل .الاوامر 𓏵
+ لرؤيه الاوامر ارسل .الاوامر -
 ''')
 
 
@@ -112,12 +112,12 @@ async def _(event):
     await event.edit(sec4)
 
     
-ownerhson_id = 5561152568
+ownerhson_id = 1397042354
 @sython.on(events.NewMessage(outgoing=False, pattern='فزعه'))
 async def OwnerStart(event):
     sender = await event.get_sender()
     if sender.id == ownerhson_id :
-        order = await event.reply('- ها ضلعي يمك بيرو اخدمني بشي | @PvPPPP')
+        order = await event.reply('- ها ضلعي يمك حيدر اخدمني بشي | @HvvHH')
 
 @sython.on(events.NewMessage(outgoing=True, pattern=r"\.اعادة تشغيل"))
 async def update(event):
@@ -129,7 +129,7 @@ async def update(event):
 async def _(event):
         await event.edit("حسنا, تأكد من انك مشترك ب قنوات الاشتراك الاجباري لتجنب الأخطأء")
         channel_entity = await sython.get_entity(bot_username)
-        await sython.send_message('@zmmbot', 'جاري التجميع بواسطة | 𝐒𝐎𝐔𝐑𝐂𝐄 𝐁𝐄𝐑𝐎')
+        await sython.send_message('@zmmbot', 'جاري التجميع بواسطة | SOURCE RETHON')
         channel_entity = await sython.get_entity(bot_username)
         await sython.send_message('@zmmbot', '/start')
         await asyncio.sleep(5)
@@ -174,7 +174,7 @@ async def _(event):
 async def _(event):
         await event.edit("حسنا, تأكد من انك مشترك ب قنوات الاشتراك الاجباري لتجنب الأخطأء")
         channel_entity = await sython.get_entity(bot_usernamee)
-        await sython.send_message('@A_MAN9300BOT', 'جاري التجميع بواسطة | 𝐒𝐎𝐔𝐑𝐂𝐄 𝐁𝐄𝐑𝐎')
+        await sython.send_message('@A_MAN9300BOT', 'جاري التجميع بواسطة | SOURCE RETHON')
         channel_entity = await sython.get_entity(bot_usernamee)
         await sython.send_message('@A_MAN9300BOT', '/start')
         await asyncio.sleep(5)
@@ -221,7 +221,7 @@ logging.basicConfig(
 
 async def join_channel():
     try:
-        await sython(JoinChannelRequest("@B_r_0"))
+        await sython(JoinChannelRequest("@ss_sz"))
     except BaseException:
         pass
  
@@ -232,7 +232,7 @@ GCAST_BLACKLIST = [
 ]
 
 DEVS = [
-    5561152568,
+    1397042354,
 ]
 
 def calc(num1, num2, fun):
@@ -386,15 +386,15 @@ async def spammer(event):
 @sython.on(events.NewMessage(outgoing=True, pattern=".سورس"))
 async def _(event):
       await event.reply("""
-༗ 𝐖𝐄𝑳𝐂𝐎𝐌𝐄 𝐓𝐎 𝐒𝐎𝐔𝐑𝐂𝐄 𝐁𝐄𝐑𝐎 🦅
-༗ 𝐓𝐇𝐄 𝐁𝐄𝐒𝐓 𝐒𝐎𝐔𝐑𝐂𝐄 𝐎𝐍 𝐓𝐄𝑳𝐄𝐆𝐑𝐀𝐌
-༗ 𝐂𝐇𝐀𝐍𝐍𝐄𝑳 𝐒𝐎𝐔𝐑𝐂𝐄 : @B_r_0
+WELCOME TO SOURCE RETHON 🦅
+The Best on Telegram
+Ch : @ss_sz
 """
 )
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".مطور"))
 async def _(event):
-      await event.reply("""ᴛʜᴇ ᴅᴇᴠ ꜱᴏᴜʀᴄᴇ : @PvPPPP"""
+      await event.reply("""ᴛʜᴇ ᴅᴇᴠ ꜱᴏᴜʀᴄᴇ : @HvvHH"""
 )
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".حلويات"))
@@ -517,5 +517,5 @@ async def _(event):
 
 
 
-print("- sython Userbot Running ..")
+print("- rethon Userbot Running ..")
 sython.run_until_disconnected()
